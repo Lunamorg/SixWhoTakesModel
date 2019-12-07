@@ -11,9 +11,15 @@ class SixWhoTakesPacket
     public SixWhoTakesPacket()
     {
         random= new Random();
+        // Mélange le paquet!
+        Shuffle();
+    }
+
+    public void Shuffle()
+    {
         cards = new List<Cards>(CARDS_NB);
 
-        for (int i = 0; i < CARDS_NB; ++i)
+        for (uint i = 0; i < CARDS_NB; ++i)
         {
             Cards tmp = new Cards(i + 1);
             cards.Add(tmp);
@@ -22,25 +28,23 @@ class SixWhoTakesPacket
         cardsLeft = CARDS_NB;
     }
 
-    public List<Cards> GetDeck()
-    {
+    // Renvoie 10 cartes.
+    public List<Cards> GetDeck() {
+        // Si il ne reste que 10 cartes dans le paquet.
+        if (cards.Count == 10) return cards;
+
         List<Cards> tmp = new List<Cards>(10);
         
-        for (int i = 0; i < 10; ++i)
-        {   
+        for (int i = 0; i < 10; ++i) {   
             Cards cardSelected = GetCard();
-
             tmp.Add(cardSelected);
-
-            Console.WriteLine("Nombre de carte restante " + cards.Count);
-            Console.WriteLine("Numéro de la carte " + cardSelected.getValue());
         }
 
         return tmp;
     }
 
-    public Cards GetCard()
-    {
+    // Renvoie une carte du paquet.
+    public Cards GetCard() {
         int r = random.Next(0, cardsLeft);
         --cardsLeft;
         Cards tmp = cards[r];
@@ -48,5 +52,6 @@ class SixWhoTakesPacket
         return tmp;
     }
 
+    
 }
 

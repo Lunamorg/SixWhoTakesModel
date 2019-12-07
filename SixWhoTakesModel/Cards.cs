@@ -2,9 +2,9 @@
 
 public class Cards : IEquatable<Cards>, IComparable<Cards>
 {
-    private int value;
+    private uint value;
 
-    public Cards(int value)
+    public Cards(uint value)
     {
         this.value = value;
     }
@@ -27,7 +27,7 @@ public class Cards : IEquatable<Cards>, IComparable<Cards>
         return other.getValue() == this.getValue();
     }
 
-    public int getValue()
+    public uint getValue()
     {
         return value;
     }
